@@ -4,9 +4,10 @@ import enums.Credentials;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static enums.Credentials.*;
 import static org.testng.Assert.assertEquals;
 
-public class SignInPage extends DefaultPage{
+public class SignInPage extends DefaultPage {
 
     @FindBy(css = "#email_create")
     private WebElement newEmailInput;
@@ -46,9 +47,22 @@ public class SignInPage extends DefaultPage{
 
     //===================================checks======================================
 
-    public void checkErrorMessage() {
+    public void checkErrorMessage(Credentials user) {
         assertEquals(amountOfErrorsHappened.getText(), "There is 1 error");
-        assertEquals(textOfError.getText(), "Invalid password.");
+
+        if (user.equals(USER_WITHOUT_EMAIL)) {
+            assertEquals(textOfError.getText(), "An email address required.");
+        }
+        if (user.equals(USER_WITH_INCORRECT_EMAIL)) {
+            assertEquals(textOfError.getText(), "Invalid email address.");
+        }
+        if (user.equals(USER_WITH_INCORRECT_PASSWORD)) {
+            assertEquals(textOfError.getText(), "Invalid password.");
+        }
+        if (user.equals(USER_WITHOUT_PASSWORD)) {
+            assertEquals(textOfError.getText(), "Password is required.");
+        }
+
     }
 }
 
