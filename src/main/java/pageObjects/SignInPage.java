@@ -1,7 +1,10 @@
 package pageObjects;
 
+import enums.Credentials;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.testng.Assert.assertEquals;
 
 public class SignInPage extends DefaultPage{
 
@@ -23,11 +26,29 @@ public class SignInPage extends DefaultPage{
     @FindBy(css = "[class ='lost_password form-group'] > a")
     private WebElement forgotPasswordLink;
 
+    @FindBy(css = "[class = 'alert alert-danger'] p")
+    private WebElement amountOfErrorsHappened;
+
+    @FindBy(css = "[class = 'alert alert-danger'] li")
+    private WebElement textOfError;
+
+
     //===================================methods=====================================
 
+    public void fillInEmailAddressForSignIn(Credentials user) {
+        existingEmailInput.sendKeys(user.getEmail());
+        passwordInput.sendKeys(user.getPass());
+    }
+
+    public void clickSignInButton() {
+        signInButton.click();
+    }
 
     //===================================checks======================================
 
-
+    public void checkErrorMessage() {
+        assertEquals(amountOfErrorsHappened.getText(), "There is 1 error");
+        assertEquals(textOfError.getText(), "Invalid password.");
+    }
 }
 

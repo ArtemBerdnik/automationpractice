@@ -13,7 +13,9 @@ public class HomePage extends DefaultPage{
 
     //============================methods=======================================
 
-
+    public void clickSignInButton() {
+        singInButton.click();
+    }
 
 
     //============================checks========================================
