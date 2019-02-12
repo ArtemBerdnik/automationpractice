@@ -62,7 +62,10 @@ public class SignInPage extends DefaultPage {
         if (user.equals(USER_WITHOUT_PASSWORD)) {
             assertEquals(textOfError.getText(), "Password is required.");
         }
+    }
 
+    public void checkSuccessfulLogin(Credentials user) {
+        assertEquals(logginedInUserName.getText(), user.getFirstName()+ " " + user.getLastName());
     }
 }
 

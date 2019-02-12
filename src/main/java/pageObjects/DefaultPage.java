@@ -27,6 +27,12 @@ public abstract class DefaultPage {
     @FindBy(css = "[name= 'submit_search']")
     WebElement submitSearch;
 
+    @FindBy(css = ".account")
+    WebElement logginedInUserLink;
+
+    @FindBy(css = ".account span")
+    WebElement logginedInUserName;
+
 
     //Footer
 

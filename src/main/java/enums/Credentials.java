@@ -6,9 +6,12 @@ public enum Credentials {
     USER_WITH_INCORRECT_EMAIL("user", "pass"),
     USER_WITHOUT_EMAIL("", "pass"),
     USER_WITHOUT_PASSWORD("user@email.com", ""),
-    USER_WITH_CORRECT_EMAIL_AND_PASSWORD("correct_user@gm.com", "qwerty12345");
+    USER_WITH_CORRECT_EMAIL_AND_PASSWORD("testAQA@epam.ru", "qwerty12345", "Cool", "Guy");
 
     String email;
+    String firstName;
+    String lastName;
+    String pass;
 
     public String getEmail() {
         return email;
@@ -18,7 +21,14 @@ public enum Credentials {
         return pass;
     }
 
-    String pass;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
 
     Credentials(String email) {
         this.email = email;
@@ -27,6 +37,12 @@ public enum Credentials {
     Credentials(String email, String pass) {
         this(email);
         this.pass = pass;
+    }
+
+    Credentials(String email, String pass, String firstName, String lastName) {
+        this(email,pass);
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 }
