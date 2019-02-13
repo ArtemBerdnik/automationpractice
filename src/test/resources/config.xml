@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Basic tests" verbose="1" parallel="methods" thread-count="2">
+
+    <test name="Smoke tests">
+
+        <classes>
+            <class name="LoginTest"/>
+            <class name="SummerDressesTest"/>
+        </classes>
+    </test>
+</suite>

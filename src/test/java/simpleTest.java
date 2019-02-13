@@ -17,8 +17,6 @@ public class simpleTest extends TestNGBase {
     }
 
     @Test
-    public void simpleTest()   {
-        homePage.openSummerDressesPage();
-        summerDressesPage.test();
+    public void simpleTest() {
     }
 }

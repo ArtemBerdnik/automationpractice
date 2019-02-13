@@ -57,7 +57,7 @@ public class SummerDressesPage extends DefaultPage {
         return Double.parseDouble(priceRange.getText().substring(10, 15));
     }
 
-    public void sliderTest(int from, int to) throws InterruptedException {
+    public void sliderTest(int from, int to) {
         //one shift of slider
         double shift = 0.16;
         //how much times we need to move slider
@@ -68,7 +68,7 @@ public class SummerDressesPage extends DefaultPage {
         //Work with the left slider
         if (from > getLeftNumber()) {
             iteration = (from - getLeftNumber()) / shift;
-            action.click(leftSliderControl).build().perform();
+            action.click(leftSliderControl);
             for (int i = 0; i < iteration; i++) {
                 action.sendKeys(Keys.ARROW_RIGHT).build().perform();
             }
@@ -77,12 +77,14 @@ public class SummerDressesPage extends DefaultPage {
         //Work with the right slider
         if (to < getRightNumber()) {
             iteration = (getRightNumber() - to) / shift;
-            action.click(rightSliderControl).build().perform();
+            action.click(rightSliderControl);
             for (int i = 0; i < iteration - 1; i++) {
                 action.sendKeys(Keys.ARROW_LEFT).build().perform();
             }
         }
-        new WebDriverWait(driver, 55).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
+
+        new WebDriverWait(driver, 55).until(ExpectedConditions
+                .invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
     }
 
     public void selectStyle() {
@@ -98,8 +100,9 @@ public class SummerDressesPage extends DefaultPage {
     //====================================checks=================================
 
     public void checkPricesForProducts(int from, int to) {
-        driver.findElements(By.cssSelector("[class='product_list grid row'] div[class='right-block'] span[itemprop='price']")).forEach(price -> assertTrue(Double.parseDouble(price.getText().substring(1)) >= from
-                && Double.parseDouble(price.getText().substring(1)) <= to));
+        driver.findElements(By.cssSelector("[class='product_list grid row'] div[class='right-block'] span[itemprop='price']"))
+                .forEach(price -> assertTrue(Double.parseDouble(price.getText().substring(1)) >= from
+                        && Double.parseDouble(price.getText().substring(1)) <= to));
     }
 }
 
