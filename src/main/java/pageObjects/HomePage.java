@@ -26,6 +26,15 @@ public class HomePage extends DefaultPage{
         summerDressesMenu.click();
     }
 
+    public void searchExactText(String text) {
+        String filledText = searchInput.getAttribute("value");
+        if (!filledText.isEmpty()){
+            searchInput.clear();
+        }
+        searchInput.sendKeys(text);
+        submitSearch.click();
+    }
+
 
     //============================checks========================================
 

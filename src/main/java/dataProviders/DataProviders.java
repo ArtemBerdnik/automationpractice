@@ -16,4 +16,13 @@ public class DataProviders extends TestNGBase {
                 {USER_WITHOUT_PASSWORD}
         };
     }
+
+    @DataProvider
+    public Object[][] textsForSearching() {
+        return new Object[][]{
+                {"T-shirt"},
+                {"Dress"},
+                {"Faded"}
+        };
+    }
 }
