@@ -34,8 +34,23 @@ public abstract class DefaultPage {
     WebElement logginedInUserName;
 
 
-    //Footer
+    //Navigation
+    @FindBy(css = "a[title='Women']")
+    WebElement womenDropdown;
 
+    @FindBy(css = "[class='sf-menu clearfix menu-content sf-js-enabled sf-arrows'] > li:nth-child(2)")
+    WebElement dressesDroddown;
+
+    @FindBy(css = "[class='sf-menu clearfix menu-content sf-js-enabled sf-arrows'] > li:nth-of-type(2) a[title='Casual Dresses']")
+    WebElement casualDressesMenu;
+
+    @FindBy(css = "[class='sf-menu clearfix menu-content sf-js-enabled sf-arrows'] > li:nth-of-type(2) a[title='Summer Dresses']")
+    WebElement summerDressesMenu;
+
+    @FindBy(css = "[class='sf-menu clearfix menu-content sf-js-enabled sf-arrows'] > li:nth-of-type(3) >a")
+    WebElement tShirtsMenu;
+
+    //Footer
     //Newsletter block
     @FindBy(css = "#newsletter_block_left > h4")
     WebElement newsletterName;

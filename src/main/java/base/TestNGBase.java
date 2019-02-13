@@ -9,7 +9,7 @@ import static enums.Urls.HOME_PAGE;
 
 public class TestNGBase {
 
-    protected WebDriver driver;
+    public static WebDriver driver;
 
     @BeforeSuite
     public void beforeSuite() {

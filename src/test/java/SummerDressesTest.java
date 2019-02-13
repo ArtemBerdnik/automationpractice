@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.SummerDressesPage;
 
-public class simpleTest extends TestNGBase {
+public class SummerDressesTest extends TestNGBase {
 
     private HomePage homePage;
     private SummerDressesPage summerDressesPage;
@@ -17,8 +17,14 @@ public class simpleTest extends TestNGBase {
     }
 
     @Test
-    public void simpleTest()   {
+    public void checkSlider() throws InterruptedException {
+        //Open summer dresses page
         homePage.openSummerDressesPage();
-        summerDressesPage.test();
+
+        //Move slider to a desired positions
+        summerDressesPage.sliderTest(20, 29);
+
+        //Verify that products are filtered out according to set of filters
+        summerDressesPage.checkPricesForProducts(20,29);
     }
 }
