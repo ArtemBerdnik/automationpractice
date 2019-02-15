@@ -64,7 +64,7 @@ public class DressesPage extends DefaultPage {
         return word;
     }
 
-    public void filterOutByColor(Materials desiredMaterial) {
+    public void filterOutByMaterial(Materials desiredMaterial) {
 
         for (WebElement material : compositionsFilers) {
             if (trimWordsBySpace(material.getText()).toUpperCase().equals(desiredMaterial.name())) {

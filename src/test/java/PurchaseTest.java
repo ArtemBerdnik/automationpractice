@@ -1,5 +1,4 @@
 import base.TestNGBase;
-import enums.PaymentMethods;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,48 +28,61 @@ public class PurchaseTest extends TestNGBase {
     }
 
     @Test
-    public void checkPurchaseOfOneThing() throws InterruptedException {
+    public void checkPurchaseOfOneThing() {
 
+        //Open dresses page
         homePage.openDressesPage();
 
-        dressesPage.filterOutByColor(COTTON);
+        //Filter everything out by desired material
+        dressesPage.filterOutByMaterial(COTTON);
 
+        //Go to detailed page of desired product
         dressesPage.goToProductPage();
 
+        //Select desired size
         productPage.clickSizesDropdown();
-
         productPage.chooseSize(M);
 
+        //Select desired color
         productPage.selectColor(ORANGE);
 
+        //Add product to the cart
         productPage.addToCart();
 
+        //Check the exact product was added
         productPage.verifyConfirmationPopup();
-
         productPage.checkProductAttributes(ORANGE, M);
 
+        //Go to checkout
         productPage.proceedToCheckout();
 
+        //Review the order and go to sign in page
         checkoutProcessPage.completeSummaryStep();
 
+        //Log in
         signInPage.fillInEmailAddressForSignIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
-
         signInPage.clickSignInButton();
 
+        //Check delivery address
         checkoutProcessPage.checkAddresses();
-
         checkoutProcessPage.completeAddressStep();
 
+        //Tick terms and conditions checkbox
         checkoutProcessPage.clickTermsAndConditionsCheckbox();
 
+        //Go to payment page
         checkoutProcessPage.completeDeliveryStep();
 
+        //Select desired payment method
         checkoutProcessPage.selectPaymentMethod(PAY_BY_BANK_WIRE);
 
+        //Check the correct payment is selected
         checkoutProcessPage.checkCorrectPaymentIsSelected(PAY_BY_BANK_WIRE);
 
+        //Finally confirm your order
         checkoutProcessPage.confirmOrder();
 
+        //Check that order is successful
         checkoutProcessPage.checkThatOrderIsTaken(PAY_BY_BANK_WIRE);
     }
 }
