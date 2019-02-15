@@ -35,6 +35,10 @@ public class HomePage extends DefaultPage{
         submitSearch.click();
     }
 
+    public void openDressesPage() {
+        dressesDroddown.click();
+    }
+
 
     //============================checks========================================
 
