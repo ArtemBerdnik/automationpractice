@@ -18,6 +18,9 @@ import static org.testng.Assert.assertTrue;
 
 public class ProductPage extends DefaultPage {
 
+    static WebDriverWait wait = new WebDriverWait(driver, 15);
+
+
     @FindBy(css = "#group_1")
     private WebElement sizeDropdown;
 
@@ -45,7 +48,7 @@ public class ProductPage extends DefaultPage {
     //====================================methods================================
 
     public void clickSizesDropdown() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#bigpic")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#bigpic")));
         sizeDropdown.click();
     }
 
@@ -80,7 +83,7 @@ public class ProductPage extends DefaultPage {
     //====================================checks================================
 
     public void verifyConfirmationPopup() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(confirmationPopup));
+        wait.until(ExpectedConditions.visibilityOf(confirmationPopup));
         assertEquals(confirmationPopupText.getText(), "Product successfully added to your shopping cart");
     }
 

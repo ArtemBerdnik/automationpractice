@@ -10,6 +10,9 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePage extends DefaultPage{
 
+    static WebDriverWait wait = new WebDriverWait(driver, 15);
+
+
     //Main content
 
 
@@ -22,7 +25,7 @@ public class HomePage extends DefaultPage{
     public void openSummerDressesPage() {
         Actions action = new Actions(driver);
         action.moveToElement(dressesDroddown).build().perform();
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(summerDressesMenu));
+        wait.until(ExpectedConditions.visibilityOf(summerDressesMenu));
         summerDressesMenu.click();
     }
 

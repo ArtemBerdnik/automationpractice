@@ -14,9 +14,10 @@ import static base.TestNGBase.driver;
 import static enums.PaymentMethods.PAY_BY_BANK_WIRE;
 import static enums.PaymentMethods.PAY_BY_CHECK;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class CheckoutProcessPage extends DefaultPage {
+
+    static WebDriverWait wait = new WebDriverWait(driver, 15);
 
     @FindBy(css = "[class='cart_navigation clearfix'] a[title='Proceed to checkout'] > span")
     private WebElement proceedToCheckoutButtonStep1;
@@ -61,17 +62,17 @@ public class CheckoutProcessPage extends DefaultPage {
     //====================================methods================================
 
     public void completeSummaryStep() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButtonStep1));
+        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButtonStep1));
         proceedToCheckoutButtonStep1.click();
     }
 
     public void completeAddressStep() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='cart_navigation clearfix'] [class='icon-chevron-right right']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='cart_navigation clearfix'] [class='icon-chevron-right right']")));
         proceedToCheckoutButtonStep3.click();
     }
 
     public void clickTermsAndConditionsCheckbox() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckbox));
+        wait.until(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckbox));
         termsAndConditionsCheckbox.click();
     }
 
@@ -81,12 +82,12 @@ public class CheckoutProcessPage extends DefaultPage {
 
     public void selectPaymentMethod(PaymentMethods paymentMethod) {
         if (paymentMethod.equals(PAY_BY_BANK_WIRE)) {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(payByBankWire));
+            wait.until(ExpectedConditions.elementToBeClickable(payByBankWire));
             payByBankWire.click();
         }
 
         if (paymentMethod.equals(PAY_BY_CHECK)) {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(payByCheck));
+            wait.until(ExpectedConditions.elementToBeClickable(payByCheck));
             payByBankWire.click();
         }
     }
@@ -98,7 +99,7 @@ public class CheckoutProcessPage extends DefaultPage {
     //====================================checks================================
 
     public void checkAddresses() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(useSameAddressForBillingCheckbox));
+        wait.until(ExpectedConditions.visibilityOf(useSameAddressForBillingCheckbox));
 
         //assertTrue(useSameAddressForBillingCheckbox.isSelected());
         List<String> delivery = new ArrayList<>();
@@ -118,12 +119,12 @@ public class CheckoutProcessPage extends DefaultPage {
         String successfulMessage = "Your order on My Store is complete.";
 
         if (paymentMethod.equals(PAY_BY_BANK_WIRE)) {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(successfullOrderMessageAfterBankWirePayment));
+            wait.until(ExpectedConditions.visibilityOf(successfullOrderMessageAfterBankWirePayment));
             assertEquals(successfullOrderMessageAfterBankWirePayment.getText(), successfulMessage);
         }
 
         if (paymentMethod.equals(PAY_BY_CHECK)) {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(successfullOrderMessageAfterCheckPayment));
+            wait.until(ExpectedConditions.visibilityOf(successfullOrderMessageAfterCheckPayment));
             assertEquals(successfullOrderMessageAfterCheckPayment.getText(), successfulMessage);
         }
 

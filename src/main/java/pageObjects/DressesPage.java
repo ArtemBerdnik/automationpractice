@@ -1,6 +1,5 @@
 package pageObjects;
 
-import enums.Colors;
 import enums.Materials;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,6 +13,8 @@ import java.util.List;
 import static base.TestNGBase.driver;
 
 public class DressesPage extends DefaultPage {
+
+    static WebDriverWait wait = new WebDriverWait(driver, 15);
 
     @FindBy(css = "#ul_layered_id_feature_6 > li:nth-child(1)")
     WebElement casualStyle;
@@ -74,8 +75,7 @@ public class DressesPage extends DefaultPage {
     }
 
     public void goToProductPage() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions
-                .invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
 //        productImages.get(0).click();
 
         Actions actions = new Actions(driver);
