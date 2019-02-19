@@ -15,6 +15,9 @@ public class MyAccountPage extends DefaultPage {
     @FindBy(css = ".page-heading")
     private WebElement pageHeading;
 
+    @FindBy(css = ".info-account")
+    private WebElement accountInfo;
+
     @FindBy(css = "[class='row addresses-lists'] li")
     private List<WebElement> optionsOnMyAccountPage;
 
@@ -26,9 +29,10 @@ public class MyAccountPage extends DefaultPage {
 
     //===================================checks======================================
     public void checkElementsOnMyAccountPage() {
-        wait.until(ExpectedConditions.visibilityOf(pageHeading));
+        wait.until(ExpectedConditions.visibilityOf(accountInfo));
 
         assertEquals(pageHeading.getText(), "MY ACCOUNT");
+        assertEquals(accountInfo.getText(), "Welcome to your account. Here you can manage all of your personal information and orders.");
         assertEquals(optionsOnMyAccountPage.size(), 5);
     }
 

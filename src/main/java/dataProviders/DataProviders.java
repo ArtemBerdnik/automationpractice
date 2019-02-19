@@ -4,7 +4,7 @@ import base.TestNGBase;
 import org.testng.annotations.DataProvider;
 
 import static enums.Credentials.*;
-import static enums.UsersForSignIn.USER_1;
+import static enums.UsersForSignIn.*;
 
 public class DataProviders extends TestNGBase {
 
@@ -28,9 +28,12 @@ public class DataProviders extends TestNGBase {
     }
 
     @DataProvider
-    public Object[][] usersForSignIn() {
+    public Object[][] usersForSignInWithErrors() {
         return new  Object[][]{
-                {USER_1}
+                {USER_ERROR_1},
+                {USER_ERROR_2},
+                {USER_ERROR_3},
+                {USER_ERROR_4}
         };
     }
 }

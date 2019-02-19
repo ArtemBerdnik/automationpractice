@@ -7,7 +7,7 @@ public enum Credentials {
     USER_WITHOUT_EMAIL("", "pass"),
     USER_WITHOUT_PASSWORD("user@email.com", ""),
     USER_WITH_CORRECT_EMAIL_AND_PASSWORD("testAQA@epam.ru", "qwerty12345", "Cool", "Guy"),
-    NEW_USER("11testAQA@epam.ru");
+    NEW_USER("1111testAQA@epam.ru");
 
 
     String email;

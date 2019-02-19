@@ -17,7 +17,7 @@ public class TestNGBase {
     public void beforeSuite() {
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 8);
         driver.get(HOME_PAGE.url);
         driver.manage().window().maximize();
     }

@@ -1,13 +1,18 @@
 package pageObjects;
 
 import enums.UsersForSignIn;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static base.TestNGBase.driver;
 import static base.TestNGBase.wait;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CreateAccountPage extends DefaultPage {
@@ -56,6 +61,9 @@ public class CreateAccountPage extends DefaultPage {
 
     @FindBy(css = ".alert-danger")
     private WebElement alertWindow;
+
+    @FindBy(css = "[class='alert alert-danger'] li")
+    private List<WebElement> errorMessages;
     //===================================methods=====================================
 
     public void clickSubmitButton() {
@@ -88,8 +96,7 @@ public class CreateAccountPage extends DefaultPage {
                     userChoise.click();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("No such state found");
         }
 
@@ -104,5 +111,60 @@ public class CreateAccountPage extends DefaultPage {
     public void alertPopupIdDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertWindow));
         assertTrue(alertWindow.isDisplayed());
+    }
+
+    public void checkMessagesInAlertsPopup(UsersForSignIn user) {
+        submitButton.click();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(alertWindow));
+            List<WebElement> errors = driver.findElements(By.cssSelector("[class='alert alert-danger'] li"));
+            List<String> messages = new ArrayList<>();
+            errors.forEach(x -> messages.add(x.getText()));
+
+            if (!user.getPasswd().isEmpty() && user.getPasswd().length() < 5) {
+                assertTrue(messages.contains("passwd is invalid."));
+            }
+
+            if (!user.getZip().matches("[0-9]{5}")) {
+                assertTrue(messages.contains("The Zip/Postal code you've entered is invalid. It must follow this format: 00000"));
+            }
+
+            if (!user.getlName().matches("[a-zA-Z]*")) {
+                assertTrue(messages.contains("lastname is invalid."));
+            }
+
+            if (!user.getfName().matches("[a-zA-Z]*")) {
+                assertTrue(messages.contains("firstname is invalid."));
+            }
+
+            if (user.getState().isEmpty() || user.getState().equals("-")) {
+                assertTrue(messages.contains("This country requires you to choose a State."));
+            }
+
+            if (user.getMobile().isEmpty()) {
+                assertTrue(messages.contains("You must register at least one phone number."));
+            }
+
+            if (user.getfName().isEmpty()) {
+                assertTrue(messages.contains("firstname is required."));
+            }
+
+            if (user.getlName().isEmpty()) {
+                assertTrue(messages.contains("lastname is required."));
+            }
+
+            if (user.getAddress().isEmpty()) {
+                assertTrue(messages.contains("address1 is required."));
+            }
+
+            if (user.getCity().isEmpty()) {
+                assertTrue(messages.contains("city is required."));
+            }
+
+
+        } catch (TimeoutException ex) {
+            System.out.println("No errors in the form");
+        }
+
     }
 }

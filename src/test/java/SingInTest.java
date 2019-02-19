@@ -10,6 +10,7 @@ import pageObjects.MyAccountPage;
 import pageObjects.SignInPage;
 
 import static enums.Credentials.NEW_USER;
+import static enums.UsersForSignIn.USER_WITHOUT_ERRORS;
 
 public class SingInTest extends TestNGBase {
 
@@ -27,8 +28,8 @@ public class SingInTest extends TestNGBase {
     }
 
 
-    @Test(dataProvider = "usersForSignIn", dataProviderClass = DataProviders.class)
-    public void checkSigningInFunctionality(UsersForSignIn user) throws InterruptedException {
+    @Test(dataProvider = "usersForSignInWithErrors", dataProviderClass = DataProviders.class)
+    public void checkErrorsDuringSigningIn(UsersForSignIn user) {
 
         //Open Sign in page
         homePage.clickSignInButton();
@@ -45,15 +46,28 @@ public class SingInTest extends TestNGBase {
         //Fill in all required fields
         createAccountPage.fillInUserData(user);
 
-        //Click submit button
+        //Check error messages (if any)
+        createAccountPage.checkMessagesInAlertsPopup(user);
+
+//        //Assert that signing in successful and my account page is displayed
+//        myAccountPage.checkElementsOnMyAccountPage();
+//        myAccountPage.checkThatCorrectUserIsLogginedIn(user);
+    }
+
+    @Test
+    public void checkSuccessfulSigningIn() {
+        //Open Sign in page
+        homePage.clickSignInButton();
+
+        //Specify an email for login
+        signInPage.fillInEmailAddressToSignIn(NEW_USER);
+
+        //Fill in all required fields
+        createAccountPage.fillInUserData(USER_WITHOUT_ERRORS);
         createAccountPage.clickSubmitButton();
 
         //Assert that signing in successful and my account page is displayed
         myAccountPage.checkElementsOnMyAccountPage();
-        myAccountPage.checkThatCorrectUserIsLogginedIn(user);
+        myAccountPage.checkThatCorrectUserIsLogginedIn(USER_WITHOUT_ERRORS);
     }
-
-
-
-
 }

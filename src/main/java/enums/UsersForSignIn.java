@@ -2,7 +2,11 @@ package enums;
 
 public enum UsersForSignIn {
 
-    USER_1("Mr", "Art", "Berd", "12345", "testAdsress", "cicity", "Alaska", "00001", "89133234423");
+    USER_ERROR_1("Mr.", "", "", "", "", "", "", "", ""),
+    USER_ERROR_2("Mrs.", "1", "2", "12345", "address", "city", "Alaska", "aaaaa", ""),
+    USER_ERROR_3("Mrs.", "test", "user", "1235", "address", "city", "", "aaaaa", ""),
+    USER_ERROR_4("Mrs.", "test", "user", "", "address", "city", "-", "09786", "12345"),
+    USER_WITHOUT_ERRORS("Mr.", "Test", "User", "12345", "My address", "My City", "Alaska", "09786", "89994443334");
 
     String title;
     String fName;

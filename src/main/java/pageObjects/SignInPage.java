@@ -55,19 +55,21 @@ public class SignInPage extends DefaultPage {
         passwordInput.sendKeys(user.getPass());
     }
 
-    public void fillInEmailAddressToSignIn(Credentials credentials) throws InterruptedException {
+    public void fillInEmailAddressToSignIn(Credentials credentials) {
 
         newEmailInput.sendKeys(credentials.getEmail());
         createAccountButton.click();
 
-//        wait.until(ExpectedConditions.visibilityOf(emailAlreadyRegistred));
-//        credentials.setEmail("1" + credentials.getEmail());
-//        System.out.println(credentials.getEmail());
-//        newEmailInput.clear();
-//        fillInEmailAddressToSignIn(credentials);
-
+        try {
+            wait.until(ExpectedConditions.visibilityOf(emailAlreadyRegistred));
+            credentials.setEmail("1" + credentials.getEmail());
+            newEmailInput.clear();
+            fillInEmailAddressToSignIn(credentials);
+        }
+        catch(TimeoutException e) {
+            System.out.println("No alert is being displayed");
+        }
     }
-
 
     public void clickSignInButton() {
         signInButton.click();
