@@ -11,10 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 import static base.TestNGBase.driver;
+import static base.TestNGBase.wait;
 
 public class DressesPage extends DefaultPage {
-
-    static WebDriverWait wait = new WebDriverWait(driver, 15);
 
     @FindBy(css = "#ul_layered_id_feature_6 > li:nth-child(1)")
     WebElement casualStyle;

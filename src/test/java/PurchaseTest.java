@@ -60,7 +60,7 @@ public class PurchaseTest extends TestNGBase {
         checkoutProcessPage.completeSummaryStep();
 
         //Log in
-        signInPage.fillInEmailAddressForSignIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
+        signInPage.fillInEmailAddressForLogIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
         signInPage.clickSignInButton();
 
         //Check delivery address

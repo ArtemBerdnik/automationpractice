@@ -6,12 +6,18 @@ public enum Credentials {
     USER_WITH_INCORRECT_EMAIL("user", "pass"),
     USER_WITHOUT_EMAIL("", "pass"),
     USER_WITHOUT_PASSWORD("user@email.com", ""),
-    USER_WITH_CORRECT_EMAIL_AND_PASSWORD("testAQA@epam.ru", "qwerty12345", "Cool", "Guy");
+    USER_WITH_CORRECT_EMAIL_AND_PASSWORD("testAQA@epam.ru", "qwerty12345", "Cool", "Guy"),
+    NEW_USER("11testAQA@epam.ru");
+
 
     String email;
     String firstName;
     String lastName;
     String pass;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getEmail() {
         return email;

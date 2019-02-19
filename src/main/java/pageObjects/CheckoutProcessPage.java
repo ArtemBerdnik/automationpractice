@@ -5,19 +5,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static base.TestNGBase.driver;
+import static base.TestNGBase.wait;
 import static enums.PaymentMethods.PAY_BY_BANK_WIRE;
 import static enums.PaymentMethods.PAY_BY_CHECK;
 import static org.testng.Assert.assertEquals;
 
 public class CheckoutProcessPage extends DefaultPage {
-
-    static WebDriverWait wait = new WebDriverWait(driver, 15);
 
     @FindBy(css = "[class='cart_navigation clearfix'] a[title='Proceed to checkout'] > span")
     private WebElement proceedToCheckoutButtonStep1;

@@ -2,15 +2,13 @@ package pageObjects;
 
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static base.TestNGBase.driver;
+import static base.TestNGBase.wait;
 import static org.testng.Assert.assertTrue;
 
 
-public class HomePage extends DefaultPage{
-
-    static WebDriverWait wait = new WebDriverWait(driver, 15);
+public class HomePage extends DefaultPage {
 
 
     //Main content
@@ -31,7 +29,7 @@ public class HomePage extends DefaultPage{
 
     public void searchExactText(String text) {
         String filledText = searchInput.getAttribute("value");
-        if (!filledText.isEmpty()){
+        if (!filledText.isEmpty()) {
             searchInput.clear();
         }
         searchInput.sendKeys(text);

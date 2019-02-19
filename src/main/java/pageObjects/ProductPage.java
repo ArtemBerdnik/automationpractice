@@ -1,25 +1,19 @@
 package pageObjects;
 
 import enums.Colors;
-import enums.Materials;
 import enums.Sizes;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static base.TestNGBase.driver;
+import static base.TestNGBase.wait;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class ProductPage extends DefaultPage {
-
-    static WebDriverWait wait = new WebDriverWait(driver, 15);
-
 
     @FindBy(css = "#group_1")
     private WebElement sizeDropdown;
@@ -54,7 +48,7 @@ public class ProductPage extends DefaultPage {
 
     public void chooseSize(Sizes sizes) {
         for (WebElement option : sizeDropdownOptions) {
-            if(option.getText().equals(sizes.name())) {
+            if (option.getText().equals(sizes.name())) {
                 option.click();
             }
         }
@@ -77,7 +71,7 @@ public class ProductPage extends DefaultPage {
     }
 
     public List<String> findProductAttributes() {
-       return Arrays.asList(orderAttributes.getText().split(","));
+        return Arrays.asList(orderAttributes.getText().split(","));
     }
 
     //====================================checks================================

@@ -26,7 +26,7 @@ public class LoginTest extends TestNGBase {
         homePage.clickSignInButton();
 
         //Fill in data for user with incorrect pass
-        signInPage.fillInEmailAddressForSignIn(user);
+        signInPage.fillInEmailAddressForLogIn(user);
 
         //Click sign in button
         signInPage.clickSignInButton();
@@ -41,7 +41,7 @@ public class LoginTest extends TestNGBase {
         homePage.clickSignInButton();
 
         //Fill in data for user with incorrect pass
-        signInPage.fillInEmailAddressForSignIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
+        signInPage.fillInEmailAddressForLogIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
 
         //Click sign in button
         signInPage.clickSignInButton();
