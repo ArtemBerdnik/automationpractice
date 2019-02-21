@@ -19,7 +19,7 @@ public class SingInTest extends TestNGBase {
     private CreateAccountPage createAccountPage = new CreateAccountPage();
     private MyAccountPage myAccountPage = new MyAccountPage();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         signInPage = PageFactory.initElements(driver, SignInPage.class);
@@ -30,6 +30,8 @@ public class SingInTest extends TestNGBase {
 
     @Test(dataProvider = "usersForSignInWithErrors", dataProviderClass = DataProviders.class)
     public void checkErrorsDuringSigningIn(UsersForSignIn user) {
+        //Open tested site
+        homePage.openSite();
 
         //Open Sign in page
         homePage.clickSignInButton();

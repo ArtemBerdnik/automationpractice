@@ -12,7 +12,6 @@ import java.util.List;
 
 import static base.TestNGBase.driver;
 import static base.TestNGBase.wait;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CreateAccountPage extends DefaultPage {

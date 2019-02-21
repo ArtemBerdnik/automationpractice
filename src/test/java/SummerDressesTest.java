@@ -10,7 +10,7 @@ public class SummerDressesTest extends TestNGBase {
     private HomePage homePage;
     private SummerDressesPage summerDressesPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         summerDressesPage = PageFactory.initElements(driver, SummerDressesPage.class);
@@ -18,6 +18,9 @@ public class SummerDressesTest extends TestNGBase {
 
     @Test
     public void checkSlider() {
+        //Open tested site
+        homePage.openSite();
+
         //Open summer dresses page
         homePage.openSummerDressesPage();
 

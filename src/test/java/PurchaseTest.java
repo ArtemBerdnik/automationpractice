@@ -18,7 +18,7 @@ public class PurchaseTest extends TestNGBase {
     private SignInPage signInPage;
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         dressesPage = PageFactory.initElements(driver, DressesPage.class);
@@ -29,6 +29,8 @@ public class PurchaseTest extends TestNGBase {
 
     @Test
     public void checkPurchaseOfOneThing() {
+        //Open tested site
+        homePage.openSite();
 
         //Open dresses page
         homePage.openDressesPage();

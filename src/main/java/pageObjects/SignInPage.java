@@ -2,20 +2,12 @@ package pageObjects;
 
 import enums.Credentials;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 
-import java.util.concurrent.TimeUnit;
-
-import static base.TestNGBase.driver;
 import static base.TestNGBase.wait;
 import static enums.Credentials.*;
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.testng.Assert.assertEquals;
 
 public class SignInPage extends DefaultPage {

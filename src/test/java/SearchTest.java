@@ -11,7 +11,7 @@ public class SearchTest extends TestNGBase {
     private HomePage homePage;
     private SearchResultsPage searchResultsPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         searchResultsPage = PageFactory.initElements(driver, SearchResultsPage.class);
@@ -19,6 +19,9 @@ public class SearchTest extends TestNGBase {
 
     @Test(dataProvider = "textsForSearching", dataProviderClass = DataProviders.class)
     public void checkSearchingResults(String text) {
+        //Open tested site
+        homePage.openSite();
+
         //Search for a specific text
         homePage.searchExactText(text);
 

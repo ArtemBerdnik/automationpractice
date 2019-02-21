@@ -3,6 +3,11 @@
 <suite name="Basic tests" verbose="1" parallel="methods" thread-count="2">
 
     <test name="Smoke tests">
+        <groups>
+            <run>
+                <include name="TestGroup"/>
+            </run>
+        </groups>
 
         <classes>
             <class name="LoginTest"/>

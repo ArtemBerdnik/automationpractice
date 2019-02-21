@@ -14,14 +14,17 @@ public class LoginTest extends TestNGBase {
     private HomePage homePage;
     private SignInPage signInPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         homePage = PageFactory.initElements(driver, HomePage.class);
         signInPage = PageFactory.initElements(driver, SignInPage.class);
     }
 
-    @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class, groups = "TestGroup")
     public void checkFailedLoginTypes(Credentials user) {
+        //Open tested site
+        homePage.openSite();
+
         //Open Sign in page
         homePage.clickSignInButton();
 
@@ -37,6 +40,9 @@ public class LoginTest extends TestNGBase {
 
     @Test
     public void checkSuccessfulLogin() {
+        //Open tested site
+        homePage.openSite();
+
         //Open Sign in page
         homePage.clickSignInButton();
 

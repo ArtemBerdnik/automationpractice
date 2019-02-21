@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static base.TestNGBase.driver;
 import static base.TestNGBase.wait;
+import static enums.Urls.HOME_PAGE;
 import static org.testng.Assert.assertTrue;
 
 
@@ -15,6 +16,10 @@ public class HomePage extends DefaultPage {
 
 
     //============================methods=======================================
+
+    public void openSite() {
+        driver.get(HOME_PAGE.url);
+    }
 
     public void clickSignInButton() {
         singInButton.click();

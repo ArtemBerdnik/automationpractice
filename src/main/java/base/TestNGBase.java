@@ -1,29 +1,25 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
-import static enums.Urls.HOME_PAGE;
+import utils.TestUtils;
 
 public class TestNGBase {
 
     public static WebDriver driver;
     public static WebDriverWait wait;
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = TestUtils.getDriver();
         wait = new WebDriverWait(driver, 8);
-        driver.get(HOME_PAGE.url);
-        driver.manage().window().maximize();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() {
-        driver.close();
+        TestUtils.closeDriver();
     }
 }
