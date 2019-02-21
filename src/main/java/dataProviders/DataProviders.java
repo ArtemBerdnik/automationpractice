@@ -4,6 +4,9 @@ import base.TestNGBase;
 import org.testng.annotations.DataProvider;
 
 import static enums.Credentials.*;
+import static enums.SubjectsForContactForm.CUSTOMER_SERVICE;
+import static enums.SubjectsForContactForm.EMPTY;
+import static enums.SubjectsForContactForm.WEBMASTER;
 import static enums.UsersForSignIn.*;
 
 public class DataProviders extends TestNGBase {
@@ -36,4 +39,17 @@ public class DataProviders extends TestNGBase {
                 {USER_ERROR_4}
         };
     }
+
+    @DataProvider
+    public Object[][] dataForContactForm() {
+        return new Object[][] {
+                {WEBMASTER, "eee@", "test", "testMessage"},
+                {CUSTOMER_SERVICE, "e", "test", "testMessage"},
+                {WEBMASTER,"eee@gmail.ru", "test", "testMessage"},
+                {CUSTOMER_SERVICE, "eee@gmail.ru", "test", ""},
+                {CUSTOMER_SERVICE, "eee@gmail.ru", "", ""},
+                {EMPTY, "eee@gmail.ru", "", "testMessage"},
+        };
+    }
 }
+//String email, String ref, String message

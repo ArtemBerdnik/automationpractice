@@ -45,6 +45,10 @@ public class HomePage extends DefaultPage {
         dressesDroddown.click();
     }
 
+    public void openContactUsPage() {
+        contactUsButton.click();
+    }
+
 
     //============================checks========================================
 
