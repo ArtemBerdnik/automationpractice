@@ -1,13 +1,20 @@
 import base.TestNGBase;
+import com.google.common.io.BaseEncoding;
 import dataProviders.DataProviders;
 import enums.Credentials;
+import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.SignInPage;
+
+import java.io.File;
+import java.nio.file.Files;
 
 import static enums.Credentials.USER_WITH_CORRECT_EMAIL_AND_PASSWORD;
 
@@ -24,9 +31,13 @@ public class LoginTest extends TestNGBase {
     }
 
     @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class)
+    @SneakyThrows
     public void checkFailedLoginTypes(Credentials user) {
         //Open tested site
-        LOGGER.info("Opening homepage");
+        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
+                BaseEncoding.base64().encode(Files.readAllBytes(screenshotFile.toPath())),
+                "Opening homepage");
         homePage.openSite();
 
         //Open Sign in page
@@ -42,7 +53,10 @@ public class LoginTest extends TestNGBase {
         signInPage.clickSignInButton();
 
         //Verify errors displayed
-        LOGGER.info("Checking Error message");
+        File screenshotFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        LOGGER.info("RP_MESSAGE#BASE64#{}#{}",
+                BaseEncoding.base64().encode(Files.readAllBytes(screenshotFile1.toPath())),
+                "SASDAe");
         signInPage.checkErrorMessage(user);
     }
 

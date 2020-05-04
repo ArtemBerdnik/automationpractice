@@ -1,6 +1,8 @@
 package pageObjects;
 
 import enums.Credentials;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +13,8 @@ import static enums.Credentials.*;
 import static org.testng.Assert.assertEquals;
 
 public class SignInPage extends DefaultPage {
+
+    private static final Logger LOGGER = LogManager.getLogger(SignInPage.class);
 
     @FindBy(css = "#email_create")
     private WebElement newEmailInput;
@@ -43,6 +47,7 @@ public class SignInPage extends DefaultPage {
     //===================================methods=====================================
 
     public void fillInEmailAddressForLogIn(Credentials user) {
+        LOGGER.info(String.format("Filling in user's creds: %s, %s", user.getEmail(), user.getPass()));
         existingEmailInput.sendKeys(user.getEmail());
         passwordInput.sendKeys(user.getPass());
     }
@@ -50,6 +55,7 @@ public class SignInPage extends DefaultPage {
     public void fillInEmailAddressToSignIn(Credentials credentials) {
 
         newEmailInput.sendKeys(credentials.getEmail());
+        LOGGER.info(String.format("Filling in user's email address: %s", credentials.getEmail()));
         createAccountButton.click();
 
         try {
