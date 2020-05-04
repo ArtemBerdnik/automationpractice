@@ -18,7 +18,7 @@ public class ContactFormTest extends TestNGBase {
         contactUsPage = PageFactory.initElements(driver, ContactUsPage.class);
     }
 
-    @Test(dataProvider = "dataForContactForm", dataProviderClass = DataProviders.class, groups = "TestGroup")
+    @Test(dataProvider = "dataForContactForm", dataProviderClass = DataProviders.class)
     public void checkSendingMessageForm(SubjectsForContactForm subject, String email, String reference, String message) {
         //Open tested site
         homePage.openSite();

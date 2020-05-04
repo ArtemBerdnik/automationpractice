@@ -56,7 +56,7 @@ public class SingInTest extends TestNGBase {
 //        myAccountPage.checkThatCorrectUserIsLogginedIn(user);
     }
 
-    @Test(groups = "TestGroup")
+    @Test()
     public void checkSuccessfulSigningIn() {
         //Open Sign in page
         homePage.clickSignInButton();

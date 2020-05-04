@@ -1,21 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Basic tests" verbose="1" parallel="methods" thread-count="2">
+<suite name="Basic tests" verbose="1">
 
     <test name="Smoke tests">
-        <groups>
-            <run>
-                <include name="TestGroup"/>
-            </run>
-        </groups>
-
         <classes>
-            <class name="ContactFormTest"/>
+<!--            <class name="ContactFormTest"/>-->
             <class name="LoginTest"/>
-            <class name="PurchaseTest"/>
-            <class name="SearchTest"/>
-            <class name="SingInTest"/>
-            <class name="SummerDressesTest"/>
+<!--            <class name="PurchaseTest"/>-->
+<!--            <class name="SearchTest"/>-->
+<!--            <class name="SingInTest"/>-->
+<!--            <class name="SummerDressesTest"/>-->
         </classes>
     </test>
 </suite>
