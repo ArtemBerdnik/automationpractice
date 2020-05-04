@@ -27,7 +27,7 @@ public class PurchaseTest extends TestNGBase {
         checkoutProcessPage = PageFactory.initElements(driver, CheckoutProcessPage.class);
     }
 
-    @Test
+    @Test(groups = "TestGroup")
     public void checkPurchaseOfOneThing() {
         //Open tested site
         homePage.openSite();

@@ -28,7 +28,7 @@ public class SingInTest extends TestNGBase {
     }
 
 
-    @Test(dataProvider = "usersForSignInWithErrors", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "usersForSignInWithErrors", dataProviderClass = DataProviders.class, groups = "TestGroup")
     public void checkErrorsDuringSigningIn(UsersForSignIn user) {
         //Open tested site
         homePage.openSite();
@@ -56,7 +56,7 @@ public class SingInTest extends TestNGBase {
 //        myAccountPage.checkThatCorrectUserIsLogginedIn(user);
     }
 
-    @Test
+    @Test(groups = "TestGroup")
     public void checkSuccessfulSigningIn() {
         //Open Sign in page
         homePage.clickSignInButton();

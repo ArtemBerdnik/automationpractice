@@ -16,7 +16,7 @@ public class SummerDressesTest extends TestNGBase {
         summerDressesPage = PageFactory.initElements(driver, SummerDressesPage.class);
     }
 
-    @Test
+    @Test(groups = "TestGroup")
     public void checkSlider() {
         //Open tested site
         homePage.openSite();

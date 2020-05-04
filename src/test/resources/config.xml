@@ -10,7 +10,11 @@
         </groups>
 
         <classes>
+            <class name="ContactFormTest"/>
             <class name="LoginTest"/>
+            <class name="PurchaseTest"/>
+            <class name="SearchTest"/>
+            <class name="SingInTest"/>
             <class name="SummerDressesTest"/>
         </classes>
     </test>

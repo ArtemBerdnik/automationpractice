@@ -38,7 +38,7 @@ public class LoginTest extends TestNGBase {
         signInPage.checkErrorMessage(user);
     }
 
-    @Test
+    @Test(groups = "TestGroup")
     public void checkSuccessfulLogin() {
         //Open tested site
         homePage.openSite();
