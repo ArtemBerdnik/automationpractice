@@ -1,9 +1,11 @@
 package pageObjects;
 
 import enums.SubjectsForContactForm;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -42,6 +44,7 @@ public class ContactUsPage extends DefaultPage {
 
     //====================================methods================================
 
+    @SneakyThrows
     public void fillInContactForm(SubjectsForContactForm subject, String email, String ref, String message) {
         subjectHeadingDropdown.click();
         for (WebElement option : optionsInSubjectDropdown) {
@@ -52,7 +55,7 @@ public class ContactUsPage extends DefaultPage {
         emailInput.sendKeys(email);
         orderReferenceInput.sendKeys(ref);
         messageInput.sendKeys(message);
-        uploadFileButton.sendKeys("C:\\Users\\Artem_Berdnik\\Desktop\\testFile.txt");
+        uploadFileButton.sendKeys(Paths.get(ContactUsPage.class.getClassLoader().getResource("example.txt").toURI()).toString());
     }
 
 
