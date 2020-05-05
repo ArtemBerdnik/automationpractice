@@ -1,8 +1,6 @@
 package pageObjects;
 
 import enums.Credentials;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +12,6 @@ import static enums.Credentials.*;
 import static org.testng.Assert.assertEquals;
 
 public class SignInPage extends DefaultPage {
-
-    private static final Logger LOGGER = LogManager.getLogger(SignInPage.class);
 
     @FindBy(css = "#email_create")
     private WebElement newEmailInput;
@@ -78,6 +74,7 @@ public class SignInPage extends DefaultPage {
     //===================================checks======================================
 
     public void checkErrorMessage(Credentials user) {
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
         assertEquals(amountOfErrorsHappened.getText(), "There is 1 error");
 
         if (user.equals(USER_WITHOUT_EMAIL)) {
@@ -92,12 +89,11 @@ public class SignInPage extends DefaultPage {
         if (user.equals(USER_WITHOUT_PASSWORD)) {
             assertEquals(textOfError.getText(), "Password is required.");
         }
-        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 
     public void checkSuccessfulLogin(Credentials user) {
-        assertEquals(logginedInUserName.getText(), user.getFirstName() + " " + user.getLastName());
         LogCapturer.logInfoEventWithScreenshot("Result is: ");
+        assertEquals(logginedInUserName.getText(), user.getFirstName() + " " + user.getLastName());
     }
 }
 

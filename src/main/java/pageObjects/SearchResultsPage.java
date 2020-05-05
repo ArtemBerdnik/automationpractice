@@ -27,7 +27,7 @@ public class SearchResultsPage extends DefaultPage {
 
     //=============================checks=======================================
     public void verifyProductNames(String text) {
-        namesOfProducts.forEach(name -> assertTrue(name.getText().contains(text)));
         LogCapturer.logInfoEventWithScreenshot("Result is : ");
+        namesOfProducts.forEach(name -> assertTrue(name.getText().contains(text), String.format("Search results should contain specified text: '%s'", text)));
     }
 }

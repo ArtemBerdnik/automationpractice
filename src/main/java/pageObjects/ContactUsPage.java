@@ -4,6 +4,7 @@ import enums.SubjectsForContactForm;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.FileManager;
 import utils.LogCapturer;
 
 import java.nio.file.Paths;
@@ -53,12 +54,13 @@ public class ContactUsPage extends DefaultPage {
                 option.click();
             }
         }
-        LogCapturer.logInfoEventWithScreenshot(String.format(
-                "Filled in contact form with: email: %s, Refs: %s, Message: %s ", email, ref, message));
         emailInput.sendKeys(email);
         orderReferenceInput.sendKeys(ref);
         messageInput.sendKeys(message);
-        uploadFileButton.sendKeys(Paths.get(ContactUsPage.class.getClassLoader().getResource("example.txt").toURI()).toString());
+        uploadFileButton.sendKeys(FileManager.getFileFromResources("example.txt").getAbsolutePath());
+//        uploadFileButton.sendKeys(Paths.get(ContactUsPage.class.getClassLoader().getResource("example.txt").toURI()).toString());
+        LogCapturer.logInfoEventWithScreenshot(String.format(
+                "Filled in contact form with: email: %s, Refs: %s, Message: %s ", email, ref, message));
     }
 
 
@@ -69,6 +71,7 @@ public class ContactUsPage extends DefaultPage {
     //====================================checks=================================
 
     public void checkOutputOfSendingMessage(SubjectsForContactForm subject, String email, String ref, String message) {
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
         if (!email.matches(".+@.+\\..+")) {
             assertEquals(errorsInForm.getText(), "Invalid email address.");
         }
@@ -81,6 +84,5 @@ public class ContactUsPage extends DefaultPage {
         if (email.matches(".+@.+\\..+") && !message.isEmpty() && !subject.getName().equals("-- Choose --")) {
             assertEquals(successMessage.getText(), "Your message has been successfully sent to our team.");
         }
-        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 }

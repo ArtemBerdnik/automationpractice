@@ -1,7 +1,5 @@
 package pageObjects;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.LogCapturer;
@@ -16,7 +14,6 @@ public class HomePage extends DefaultPage {
 
 
     //Main content
-    private static final Logger LOGGER = LogManager.getLogger(HomePage.class);
 
     //============================methods=======================================
 
@@ -32,10 +29,10 @@ public class HomePage extends DefaultPage {
 
     public void openSummerDressesPage() {
         Actions action = new Actions(driver);
-        LOGGER.info(String.format("Scrolling down to %s", dressesDroddown.getText()));
+        LogCapturer.logInfoEventWithoutScreenshot(String.format("Scrolling down to %s", dressesDroddown.getText()));
         action.moveToElement(dressesDroddown).build().perform();
         wait.until(ExpectedConditions.visibilityOf(summerDressesMenu));
-        LOGGER.info(String.format("Opening %s", dressesDroddown.getText()));
+        LogCapturer.logInfoEventWithoutScreenshot(String.format("Opening %s", dressesDroddown.getText()));
         summerDressesMenu.click();
     }
 
@@ -57,7 +54,7 @@ public class HomePage extends DefaultPage {
     }
 
     public void openContactUsPage() {
-        LOGGER.info(String.format("Clicking %s", contactUsButton.getText()));
+        LogCapturer.logInfoEventWithoutScreenshot(String.format("Clicking %s", contactUsButton.getText()));
         contactUsButton.click();
     }
 

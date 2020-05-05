@@ -125,6 +125,7 @@ public class CreateAccountPage extends DefaultPage {
 
     public void checkMessagesInAlertsPopup(UsersForSignIn user) {
         submitButton.click();
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
         try {
             wait.until(ExpectedConditions.visibilityOf(alertWindow));
             List<WebElement> errors = driver.findElements(By.cssSelector("[class='alert alert-danger'] li"));
@@ -175,7 +176,5 @@ public class CreateAccountPage extends DefaultPage {
         } catch (TimeoutException ex) {
             System.out.println("No errors in the form");
         }
-
-        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 }
