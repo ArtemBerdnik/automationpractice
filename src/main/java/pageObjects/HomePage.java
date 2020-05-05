@@ -21,8 +21,8 @@ public class HomePage extends DefaultPage {
     //============================methods=======================================
 
     public void openSite() {
-        LogCapturer.logInfoEventWithScreenshot(String.format("Opening %s", HOME_PAGE.url));
         driver.get(HOME_PAGE.url);
+        LogCapturer.logInfoEventWithScreenshot(String.format("Opening %s", HOME_PAGE.url));
     }
 
     public void clickSignInButton() {
@@ -42,12 +42,12 @@ public class HomePage extends DefaultPage {
     public void searchExactText(String text) {
         String filledText = searchInput.getAttribute("value");
         if (!filledText.isEmpty()) {
-            LOGGER.info(String.format("Search input is not empty (text is in %s). Clearing the field", filledText));
+            LogCapturer.logInfoEventWithScreenshot(String.format("Search input is not empty (text is in %s). Clearing the field", filledText));
             searchInput.clear();
         }
-        LOGGER.info(String.format("Specifying desired text: %s", text));
+        LogCapturer.logInfoEventWithScreenshot(String.format("Specifying desired text: %s", text));
         searchInput.sendKeys(text);
-        LOGGER.info(String.format("Clicking %s", submitSearch.getText()));
+        LogCapturer.logInfoEventWithoutScreenshot(String.format("Clicking %s", submitSearch.getText()));
         submitSearch.click();
     }
 

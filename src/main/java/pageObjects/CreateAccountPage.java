@@ -6,6 +6,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.LogCapturer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,7 @@ public class CreateAccountPage extends DefaultPage {
 
     public void clickSubmitButton() {
         wait.until(ExpectedConditions.visibilityOf(submitButton));
+        LogCapturer.logInfoEventWithoutScreenshot("Clicking submit button");
         submitButton.click();
     }
 
@@ -88,6 +90,10 @@ public class CreateAccountPage extends DefaultPage {
         address.sendKeys(user.getAddress());
         city.sendKeys(user.getCity());
 
+
+
+
+
         stateDropdown.click();
         try {
             for (WebElement userChoise : optionsInStateDropdown) {
@@ -102,6 +108,10 @@ public class CreateAccountPage extends DefaultPage {
         zipCode.sendKeys(user.getZip());
         mobilePhone.sendKeys(user.getMobile());
 
+        LogCapturer.logInfoEventWithScreenshot(String.format(
+                "Filling in user's data. Lname: %s, Fname: %s, password: %s, address: %s, city: %s, state: %s, zipcode: %s, mobile: %s",
+                user.getlName(), user.getfName(), user.getPasswd(), user.getAddress(), user.getCity(), user.getState(), user.getZip(), user.getMobile()));
+
     }
 
 
@@ -109,6 +119,7 @@ public class CreateAccountPage extends DefaultPage {
 
     public void alertPopupIdDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertWindow));
+        LogCapturer.logInfoEventWithScreenshot("Alert should be displayed");
         assertTrue(alertWindow.isDisplayed());
     }
 
@@ -165,5 +176,6 @@ public class CreateAccountPage extends DefaultPage {
             System.out.println("No errors in the form");
         }
 
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 }

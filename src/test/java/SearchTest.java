@@ -17,7 +17,7 @@ public class SearchTest extends TestNGBase {
         searchResultsPage = PageFactory.initElements(driver, SearchResultsPage.class);
     }
 
-    @Test(dataProvider = "textsForSearching", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "textsForSearching", dataProviderClass = DataProviders.class, description = "Check searching functionality")
     public void checkSearchingResults(String text) {
         //Open tested site
         homePage.openSite();

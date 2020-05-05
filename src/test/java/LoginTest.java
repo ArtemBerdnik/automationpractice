@@ -20,7 +20,7 @@ public class LoginTest extends TestNGBase {
         signInPage = PageFactory.initElements(driver, SignInPage.class);
     }
 
-    @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class, description = "Check loggining in functionality with incorrect creds")
     public void checkFailedLoginTypes(Credentials user) {
         //Open tested site
         homePage.openSite();
@@ -38,7 +38,7 @@ public class LoginTest extends TestNGBase {
         signInPage.checkErrorMessage(user);
     }
 
-    @Test
+    @Test(description = "Check loggining in functionality with correct creds")
     public void checkSuccessfulLogin() {
         //Open tested site
         homePage.openSite();

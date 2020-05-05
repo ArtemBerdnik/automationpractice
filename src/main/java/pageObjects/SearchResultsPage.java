@@ -2,6 +2,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.LogCapturer;
 
 import java.util.List;
 
@@ -27,5 +28,6 @@ public class SearchResultsPage extends DefaultPage {
     //=============================checks=======================================
     public void verifyProductNames(String text) {
         namesOfProducts.forEach(name -> assertTrue(name.getText().contains(text)));
+        LogCapturer.logInfoEventWithScreenshot("Result is : ");
     }
 }

@@ -56,7 +56,7 @@ public class SignInPage extends DefaultPage {
     public void fillInEmailAddressToSignIn(Credentials credentials) {
 
         newEmailInput.sendKeys(credentials.getEmail());
-        LOGGER.info(String.format("Filling in user's email address: %s", credentials.getEmail()));
+        LogCapturer.logInfoEventWithScreenshot(String.format("Filling in user's email address: %s", credentials.getEmail()));
         createAccountButton.click();
 
         try {

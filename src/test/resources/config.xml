@@ -4,12 +4,12 @@
 
     <test name="Smoke tests">
         <classes>
-<!--            <class name="ContactFormTest"/>-->
+            <class name="ContactFormTest"/>
             <class name="LoginTest"/>
-<!--            <class name="PurchaseTest"/>-->
-<!--            <class name="SearchTest"/>-->
-<!--            <class name="SingInTest"/>-->
-<!--            <class name="SummerDressesTest"/>-->
+            <class name="PurchaseTest"/>
+            <class name="SearchTest"/>
+            <class name="SingInTest"/>
+            <class name="SummerDressesTest"/>
         </classes>
     </test>
 </suite>

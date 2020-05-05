@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.LogCapturer;
 
 import static base.TestNGBase.driver;
 import static org.testng.Assert.assertTrue;
@@ -51,6 +52,8 @@ public class SummerDressesPage extends DressesPage {
             }
         }
 
+        LogCapturer.logInfoEventWithScreenshot(String.format("Set sliders from %d, to %d", from, to));
+
         new WebDriverWait(driver, 55).until(ExpectedConditions
                 .invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
     }
@@ -71,6 +74,8 @@ public class SummerDressesPage extends DressesPage {
         driver.findElements(By.cssSelector("[class='product_list grid row'] div[class='right-block'] span[itemprop='price']"))
                 .forEach(price -> assertTrue(Double.parseDouble(price.getText().substring(1)) >= from
                         && Double.parseDouble(price.getText().substring(1)) <= to));
+
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 }
 
