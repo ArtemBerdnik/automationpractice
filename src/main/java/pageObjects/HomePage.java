@@ -24,7 +24,7 @@ public class HomePage extends DefaultPage {
     }
 
     public void clickSignInButton() {
-        if (logOutButton.isDisplayed()) {
+        if (!singInButton.getText().equals("Sign in")) {
             LogCapturer.logInfoEventWithScreenshot(String.format("User '%s' has already been logged in. Logging out", singInButton.getText()));
             logOutButton.click();
             wait.until(ExpectedConditions.textToBePresentInElement(singInButton, "Sign in"));
