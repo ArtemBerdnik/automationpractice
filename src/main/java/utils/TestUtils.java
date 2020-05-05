@@ -11,7 +11,6 @@ public class TestUtils {
     public static WebDriver getDriver() {
         if (driver == null) {
             driver = new ChromeDriver();
-            ((ChromeDriver) driver).setFileDetector(new LocalFileDetector());
             driver.manage().window().maximize();
         }
         return driver;

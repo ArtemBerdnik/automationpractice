@@ -58,7 +58,6 @@ public class ContactUsPage extends DefaultPage {
         orderReferenceInput.sendKeys(ref);
         messageInput.sendKeys(message);
         uploadFileButton.sendKeys(FileManager.getFileFromResources("example.txt").getAbsolutePath());
-//        uploadFileButton.sendKeys(Paths.get(ContactUsPage.class.getClassLoader().getResource("example.txt").toURI()).toString());
         LogCapturer.logInfoEventWithScreenshot(String.format(
                 "Filled in contact form with: email: %s, Refs: %s, Message: %s ", email, ref, message));
     }
