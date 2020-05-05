@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.LogCapturer;
 
 import java.util.List;
 
@@ -68,17 +69,19 @@ public class DressesPage extends DefaultPage {
         for (WebElement material : compositionsFilers) {
             if (trimWordsBySpace(material.getText()).toUpperCase().equals(desiredMaterial.name())) {
                 material.click();
+                LogCapturer.logInfoEventWithScreenshot(String.format("Clicked material %s", material));
             }
         }
     }
 
     public void goToProductPage() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class='product_list grid row'] > p img")));
-//        productImages.get(0).click();
 
         Actions actions = new Actions(driver);
         actions.moveToElement(productPrices.get(0)).build().perform();
         actions.click(moreButtons.get(0)).build().perform();
+
+        LogCapturer.logInfoEventWithScreenshot("Opening 'Product page'");
     }
 
     //====================================checks==================================

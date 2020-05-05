@@ -7,6 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.LogCapturer;
 
 import static base.TestNGBase.wait;
 import static enums.Credentials.*;
@@ -47,7 +48,7 @@ public class SignInPage extends DefaultPage {
     //===================================methods=====================================
 
     public void fillInEmailAddressForLogIn(Credentials user) {
-        LOGGER.info(String.format("Filling in user's creds: %s, %s", user.getEmail(), user.getPass()));
+        LogCapturer.logInfoEventWithScreenshot(String.format("Filling in user's creds: %s, %s", user.getEmail(), user.getPass()));
         existingEmailInput.sendKeys(user.getEmail());
         passwordInput.sendKeys(user.getPass());
     }
@@ -70,6 +71,7 @@ public class SignInPage extends DefaultPage {
     }
 
     public void clickSignInButton() {
+        LogCapturer.logInfoEventWithoutScreenshot("Clicking Sing in button");
         signInButton.click();
     }
 
@@ -90,10 +92,12 @@ public class SignInPage extends DefaultPage {
         if (user.equals(USER_WITHOUT_PASSWORD)) {
             assertEquals(textOfError.getText(), "Password is required.");
         }
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 
     public void checkSuccessfulLogin(Credentials user) {
         assertEquals(logginedInUserName.getText(), user.getFirstName() + " " + user.getLastName());
+        LogCapturer.logInfoEventWithScreenshot("Result is: ");
     }
 }
 

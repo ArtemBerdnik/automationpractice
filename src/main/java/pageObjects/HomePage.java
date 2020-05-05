@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.LogCapturer;
 
 import static base.TestNGBase.driver;
 import static base.TestNGBase.wait;
@@ -20,12 +21,12 @@ public class HomePage extends DefaultPage {
     //============================methods=======================================
 
     public void openSite() {
-        LOGGER.info(String.format("Opening %s", HOME_PAGE.url));
+        LogCapturer.logInfoEventWithScreenshot(String.format("Opening %s", HOME_PAGE.url));
         driver.get(HOME_PAGE.url);
     }
 
     public void clickSignInButton() {
-        LOGGER.info(String.format("Clicking %s", singInButton.getText()));
+        LogCapturer.logInfoEventWithoutScreenshot(String.format("Clicking %s", singInButton.getText()));
         singInButton.click();
     }
 
@@ -51,7 +52,7 @@ public class HomePage extends DefaultPage {
     }
 
     public void openDressesPage() {
-        LOGGER.info(String.format("Opening %s", dressesDroddown.getText()));
+        LogCapturer.logInfoEventWithScreenshot(String.format("Opening %s", dressesDroddown.getText()));
         dressesDroddown.click();
     }
 

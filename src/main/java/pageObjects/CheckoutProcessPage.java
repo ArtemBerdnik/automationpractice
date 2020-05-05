@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.LogCapturer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,20 +62,24 @@ public class CheckoutProcessPage extends DefaultPage {
     public void completeSummaryStep() {
         wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButtonStep1));
         proceedToCheckoutButtonStep1.click();
+        LogCapturer.logInfoEventWithoutScreenshot("Complete summary");
     }
 
     public void completeAddressStep() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='cart_navigation clearfix'] [class='icon-chevron-right right']")));
         proceedToCheckoutButtonStep3.click();
+        LogCapturer.logInfoEventWithoutScreenshot("complete address");
     }
 
     public void clickTermsAndConditionsCheckbox() {
         wait.until(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckbox));
         termsAndConditionsCheckbox.click();
+        LogCapturer.logInfoEventWithoutScreenshot("Clicking term and conditions checkbox");
     }
 
     public void completeDeliveryStep() {
         proceedToCheckoutButtonStep4.click();
+        LogCapturer.logInfoEventWithoutScreenshot("Complete delivery step");
     }
 
     public void selectPaymentMethod(PaymentMethods paymentMethod) {
@@ -87,10 +92,13 @@ public class CheckoutProcessPage extends DefaultPage {
             wait.until(ExpectedConditions.elementToBeClickable(payByCheck));
             payByBankWire.click();
         }
+        LogCapturer.logInfoEventWithScreenshot(String.format("Selected payment method: %s", paymentMethod.methodName));
+
     }
 
     public void confirmOrder() {
         proceedToCheckoutButtonStep5.click();
+        LogCapturer.logInfoEventWithoutScreenshot("Confirm order");
     }
 
     //====================================checks================================
@@ -106,6 +114,7 @@ public class CheckoutProcessPage extends DefaultPage {
         billingAddressDetails.forEach(b -> billing.add(b.getText()));
 
         assertEquals(delivery, billing);
+        LogCapturer.logInfoEventWithScreenshot("Check address: ");
     }
 
     public void checkCorrectPaymentIsSelected(PaymentMethods paymentMethod) {
@@ -124,7 +133,7 @@ public class CheckoutProcessPage extends DefaultPage {
             wait.until(ExpectedConditions.visibilityOf(successfullOrderMessageAfterCheckPayment));
             assertEquals(successfullOrderMessageAfterCheckPayment.getText(), successfulMessage);
         }
-
+        LogCapturer.logInfoEventWithScreenshot("check that payment is taken");
     }
 
 }
