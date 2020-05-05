@@ -18,6 +18,9 @@ public abstract class DefaultPage {
     @FindBy(css = ".header_user_info >a")
     WebElement singInButton;
 
+    @FindBy(css = "[title='Log me out']")
+    WebElement logOutButton;
+
     @FindBy(css = "[class = 'logo img-responsive']")
     WebElement logo;
 

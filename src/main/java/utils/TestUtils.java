@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.LocalFileDetector;
 
 public class TestUtils {
 
@@ -10,6 +11,7 @@ public class TestUtils {
     public static WebDriver getDriver() {
         if (driver == null) {
             driver = new ChromeDriver();
+            ((ChromeDriver) driver).setFileDetector(new LocalFileDetector());
             driver.manage().window().maximize();
         }
         return driver;

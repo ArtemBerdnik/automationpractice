@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.LogCapturer;
 
@@ -23,6 +24,11 @@ public class HomePage extends DefaultPage {
     }
 
     public void clickSignInButton() {
+        if (logOutButton.isDisplayed()) {
+            LogCapturer.logInfoEventWithScreenshot(String.format("User '%s' has already been logged in. Logging out", singInButton.getText()));
+            logOutButton.click();
+            wait.until(ExpectedConditions.textToBePresentInElement(singInButton, "Sign in"));
+        }
         LogCapturer.logInfoEventWithoutScreenshot(String.format("Clicking %s", singInButton.getText()));
         singInButton.click();
     }
