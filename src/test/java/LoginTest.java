@@ -22,37 +22,27 @@ public class LoginTest extends TestNGBase {
 
     @Test(dataProvider = "usernamesAndPasswords", dataProviderClass = DataProviders.class, description = "Check loggining in functionality with incorrect creds")
     public void checkFailedLoginTypes(Credentials user) {
-        //Open tested site
-        homePage.openSite();
-
         //Open Sign in page
-        homePage.clickSignInButton();
+        homePage.openSite()
+                .clickSignInButton();
 
         //Fill in data for user with incorrect pass
-        signInPage.fillInEmailAddressForLogIn(user);
-
-        //Click sign in button
-        signInPage.clickSignInButton();
-
         //Verify errors displayed
-        signInPage.checkErrorMessage(user);
+        signInPage.fillInEmailAddressForLogIn(user)
+                .clickSignInButton()
+                .checkErrorMessage(user);
     }
 
     @Test(description = "Check loggining in functionality with correct creds")
     public void checkSuccessfulLogin() {
-        //Open tested site
-        homePage.openSite();
-
         //Open Sign in page
-        homePage.clickSignInButton();
+        homePage.openSite()
+                .clickSignInButton();
 
         //Fill in data for user with incorrect pass
-        signInPage.fillInEmailAddressForLogIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
-
-        //Click sign in button
-        signInPage.clickSignInButton();
-
         //Verify that the correct user is logged in
-        signInPage.checkSuccessfulLogin(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
+        signInPage.fillInEmailAddressForLogIn(USER_WITH_CORRECT_EMAIL_AND_PASSWORD)
+                .clickSignInButton()
+                .checkSuccessfulLogin(USER_WITH_CORRECT_EMAIL_AND_PASSWORD);
     }
 }

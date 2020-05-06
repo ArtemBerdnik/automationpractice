@@ -18,12 +18,13 @@ public class HomePage extends DefaultPage {
 
     //============================methods=======================================
 
-    public void openSite() {
+    public HomePage openSite() {
         driver.get(HOME_PAGE.url);
         LogCapturer.logInfoEventWithScreenshot(String.format("Opening %s", HOME_PAGE.url));
+        return this;
     }
 
-    public void clickSignInButton() {
+    public SignInPage clickSignInButton() {
         if (!singInButton.getText().equals("Sign in")) {
             LogCapturer.logInfoEventWithScreenshot(String.format("User '%s' has already been logged in. Logging out", singInButton.getText()));
             logOutButton.click();
@@ -31,6 +32,7 @@ public class HomePage extends DefaultPage {
         }
         LogCapturer.logInfoEventWithoutScreenshot(String.format("Clicking %s", singInButton.getText()));
         singInButton.click();
+        return new SignInPage();
     }
 
     public void openSummerDressesPage() {

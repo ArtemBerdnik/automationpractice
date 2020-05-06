@@ -43,13 +43,14 @@ public class SignInPage extends DefaultPage {
 
     //===================================methods=====================================
 
-    public void fillInEmailAddressForLogIn(Credentials user) {
+    public SignInPage fillInEmailAddressForLogIn(Credentials user) {
         LogCapturer.logInfoEventWithScreenshot(String.format("Filling in user's creds: %s, %s", user.getEmail(), user.getPass()));
         existingEmailInput.sendKeys(user.getEmail());
         passwordInput.sendKeys(user.getPass());
+        return this;
     }
 
-    public void fillInEmailAddressToSignIn(Credentials credentials) {
+    public SignInPage fillInEmailAddressToSignIn(Credentials credentials) {
 
         newEmailInput.sendKeys(credentials.getEmail());
         LogCapturer.logInfoEventWithScreenshot(String.format("Filling in user's email address: %s", credentials.getEmail()));
@@ -64,16 +65,18 @@ public class SignInPage extends DefaultPage {
         catch(TimeoutException e) {
             System.out.println("No alert is being displayed");
         }
+        return this;
     }
 
-    public void clickSignInButton() {
+    public SignInPage clickSignInButton() {
         LogCapturer.logInfoEventWithoutScreenshot("Clicking Sing in button");
         signInButton.click();
+        return this;
     }
 
     //===================================checks======================================
 
-    public void checkErrorMessage(Credentials user) {
+    public SignInPage checkErrorMessage(Credentials user) {
         LogCapturer.logInfoEventWithScreenshot("Result is: ");
         assertEquals(amountOfErrorsHappened.getText(), "There is 1 error");
 
@@ -89,6 +92,7 @@ public class SignInPage extends DefaultPage {
         if (user.equals(USER_WITHOUT_PASSWORD)) {
             assertEquals(textOfError.getText(), "Password is required.");
         }
+        return this;
     }
 
     public void checkSuccessfulLogin(Credentials user) {
