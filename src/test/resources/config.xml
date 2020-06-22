@@ -1,6 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Basic tests" verbose="1">
+<suite name="Basic tests" verbose="1" parallel="tests" thread-count="2">
+
+    <parameter name="environment" value="grid"></parameter>
 
     <test name="Smoke tests">
         <classes>
