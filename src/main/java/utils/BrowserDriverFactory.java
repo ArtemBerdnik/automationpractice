@@ -43,12 +43,12 @@ public class BrowserDriverFactory {
         switch (browser) {
             case "chrome":
                 capabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
-                System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
                 break;
         }
 
         try {
             driver.set(new RemoteWebDriver(new URL(hubUrl), capabilities));
+            System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
