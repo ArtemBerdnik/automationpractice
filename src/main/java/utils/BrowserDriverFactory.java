@@ -35,7 +35,7 @@ public class BrowserDriverFactory {
 
 
     public WebDriver createDriverGrid() {
-        String hubUrl = "http://10.25.59.112:4444/wd/hub";
+        String hubUrl = "http://192.168.56.1:4444/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         System.out.println("Starting " + browser + " on grid");
