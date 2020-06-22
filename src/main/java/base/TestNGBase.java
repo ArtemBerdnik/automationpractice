@@ -27,7 +27,6 @@ public class TestNGBase {
         // maximize browser window
         driver.manage().window().maximize();
 
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 //        driver = TestUtils.getDriver();
         wait = new WebDriverWait(driver, 8);
     }

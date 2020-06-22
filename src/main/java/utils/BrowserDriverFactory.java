@@ -43,6 +43,7 @@ public class BrowserDriverFactory {
         switch (browser) {
             case "chrome":
                 capabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+                System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
                 break;
         }
 
