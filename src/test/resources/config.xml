@@ -4,14 +4,44 @@
 
     <parameter name="environment" value="grid"></parameter>
 
-    <test name="Smoke tests">
+    <test name="ContactFormTest" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="ContactFormTest"/>
+        </classes>
+    </test>
+
+    <test name="LoginTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
             <class name="LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="PurchaseTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
             <class name="PurchaseTest"/>
+        </classes>
+    </test>
+
+    <test name="SearchTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
             <class name="SearchTest"/>
+        </classes>
+    </test>
+
+    <test name="SingInTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
             <class name="SingInTest"/>
+        </classes>
+    </test>
+
+    <test name="SummerDressesTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
             <class name="SummerDressesTest"/>
         </classes>
     </test>
