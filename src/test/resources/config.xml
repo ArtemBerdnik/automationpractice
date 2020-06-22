@@ -5,6 +5,7 @@
     <parameter name="environment" value="grid"></parameter>
 
     <test name="Smoke tests">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="ContactFormTest"/>
             <class name="LoginTest"/>
